@@ -1,0 +1,6 @@
+name: Horizon
+version: '${version}'
+main: org.horizon.plugins.horizon.Horizon
+api-version: 1.19
+prefix: HORIZON
+description: Everything you need, in amazing grace
