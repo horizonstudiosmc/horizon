@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'org.horizon.plugins'
@@ -20,12 +19,10 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT'
-    implementation 'fr.mrmicky:fastboard:1.2.1'
 }
 
-shadowJar {
-    relocate 'fr.mrmicky.fastboard', 'org.horizon.plugins.horizon.fastboard'
-}
+
+
 
 def targetJavaVersion = 17
 java {

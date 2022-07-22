@@ -16,6 +16,10 @@ atlassian-ide-plugin.xml
 # Compiled class file
 *.class
 
+# Gradle
+/build
+/.gradle
+
 # Log file
 *.log
 

@@ -4,3 +4,12 @@ main: org.horizon.plugins.horizon.Horizon
 api-version: 1.19
 prefix: HORIZON
 description: Everything you need, in amazing grace
+
+commands:
+  horizon:
+    description: Main plugin command
+    usage: /horizon help
+  tp:
+    description: Better tp, opens GUI. Use argument to tp to player, or use /tpa
+  tpa:
+    description: Teleport request.

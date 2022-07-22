@@ -1,0 +1,13 @@
+scoreboard-title: "&dServer &eName"
+# Here's a list of place-holders for the lines:
+#%player% - Player username
+#%player_username% - Player displayname
+#%stat_deaths% - Player deaths
+#%stat_kills% - Player kills
+#%playtime% - Playtime
+scoreboard-lines:
+  - "&aThis is a list!"
+
+scoreboard-refresh: true
+
+prefix: "&dHORIZON "
