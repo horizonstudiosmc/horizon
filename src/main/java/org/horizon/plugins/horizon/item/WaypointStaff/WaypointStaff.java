@@ -1,4 +1,4 @@
-package org.horizon.plugins.horizon.item;
+package org.horizon.plugins.horizon.item.WaypointStaff;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,12 +16,14 @@ public class WaypointStaff extends LeveledItem {
     Horizon horizon;
 
     public WaypointStaff(Horizon horizon) {
+        this.horizon = horizon;
         level = 1;
         material = Material.STICK;
         name = "&eWaypoint Staff";
         itemLore.add(ChatColor.GREEN + "A waypoint staff");
         itemLore.add(ChatColor.GREEN + "Right click to use");
         lore = itemLore;
+        itemId = 1;
         init();
     }
 

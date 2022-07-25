@@ -12,6 +12,7 @@ import org.horizon.plugins.horizon.api.tp.NewTeleportCommand;
 import org.horizon.plugins.horizon.api.tpa.TPACommand;
 import org.horizon.plugins.horizon.api.tpa.TeleportationManager;
 import org.horizon.plugins.horizon.commands.util.HorizonMainCommand;
+import org.horizon.plugins.horizon.item.ItemEvent;
 import org.horizon.plugins.horizon.item.ItemManager;
 import org.horizon.plugins.horizon.scoreboard.ScoreboardManager;
 
@@ -58,9 +59,9 @@ public final class Horizon extends JavaPlugin {
 
         // Listeners
         getServer().getPluginManager().registerEvents(new GUIListener(), this);
+        getServer().getPluginManager().registerEvents(new ItemEvent(this), this);
 
-        // Items
-        itemManager.registerItems();
+
 
 
         // Scoreboard
@@ -85,6 +86,9 @@ public final class Horizon extends JavaPlugin {
 
         // Start searching for expansions
         expansionAPI.sfer();
+
+        // Items
+        itemManager.registerItems();
     }
 
     @Override

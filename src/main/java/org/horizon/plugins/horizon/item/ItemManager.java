@@ -1,6 +1,7 @@
 package org.horizon.plugins.horizon.item;
 
 import org.horizon.plugins.horizon.Horizon;
+import org.horizon.plugins.horizon.item.WaypointStaff.WaypointStaff;
 
 public class ItemManager {
 
@@ -8,8 +9,8 @@ public class ItemManager {
 
     WaypointStaff waypointStaff;
 
-    public ItemManager(Horizon instance) {
-        horizon = instance;
+    public ItemManager(Horizon horizon) {
+        this.horizon = horizon;
     }
 
     public void registerItems() {
