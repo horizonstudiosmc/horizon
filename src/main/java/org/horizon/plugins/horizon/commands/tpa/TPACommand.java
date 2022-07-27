@@ -1,4 +1,4 @@
-package org.horizon.plugins.horizon.api.tpa;
+package org.horizon.plugins.horizon.commands.tpa;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

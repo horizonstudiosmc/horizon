@@ -8,24 +8,40 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.horizon.plugins.horizon.api.expansion.ExpansionAPI;
 import org.horizon.plugins.horizon.api.gui.GUIListener;
 import org.horizon.plugins.horizon.api.gui.GUIManager;
-import org.horizon.plugins.horizon.api.tp.NewTeleportCommand;
-import org.horizon.plugins.horizon.api.tpa.TPACommand;
-import org.horizon.plugins.horizon.api.tpa.TeleportationManager;
+import org.horizon.plugins.horizon.api.kingdoms.KingdomAPI;
+import org.horizon.plugins.horizon.commands.tp.NewTeleportCommand;
+import org.horizon.plugins.horizon.commands.tpa.TPACommand;
+import org.horizon.plugins.horizon.commands.tpa.TeleportationManager;
 import org.horizon.plugins.horizon.commands.util.HorizonMainCommand;
 import org.horizon.plugins.horizon.scoreboard.ScoreboardManager;
 
 import java.io.File;
+import java.io.IOException;
 
 public final class Horizon extends JavaPlugin {
 
+
+    // Addon/expansion path
     public File af;
 
+
+    // Configuration
     public static FileConfiguration configuration;
+
+    // Scoreboard Manager
     public static ScoreboardManager scoreboardManager;
+
+    // Teleportation Manager
     public static TeleportationManager teleportationManager;
+
+    // GUI Manager
     public static GUIManager GUIManager;
+
+    // Expansions
     public ExpansionAPI expansionAPI;
 
+    // Kingdoms
+    KingdomAPI kingdomAPI;
 
     public String prefix;
 
@@ -43,6 +59,7 @@ public final class Horizon extends JavaPlugin {
         GUIManager = new GUIManager();
         teleportationManager = new TeleportationManager(this);
         scoreboardManager = new ScoreboardManager(this);
+        kingdomAPI = new KingdomAPI(this);
 
         // Prefix
         prefix = getConfig().getString("prefix");
@@ -81,11 +98,32 @@ public final class Horizon extends JavaPlugin {
         // Start searching for expansions
         expansionAPI.sfer();
 
+        // Save kingdoms if not exist
+        if (!kingdomAPI.kingdomsSave.exists()) {
+            try {
+                kingdomAPI.saveKingdoms();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Load kingdoms
+        try {
+            kingdomAPI.loadKingdoms();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        try {
+            kingdomAPI.saveKingdoms();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

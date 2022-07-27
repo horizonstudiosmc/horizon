@@ -1,4 +1,4 @@
-package org.horizon.plugins.horizon.api.tp;
+package org.horizon.plugins.horizon.commands.tp;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
