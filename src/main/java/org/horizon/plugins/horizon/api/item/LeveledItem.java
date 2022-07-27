@@ -2,10 +2,13 @@ package org.horizon.plugins.horizon.api.item;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+import org.horizon.plugins.horizon.Horizon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +19,14 @@ public abstract class LeveledItem {
     public ItemStack item;
     public String name;
     public String color;
-    public int itemId;
+    Horizon horizon;
+    public String itemId;
+    public NamespacedKey key;
     public List<String> lore = new ArrayList<>();
 
 
     public void init() {
+        key = new NamespacedKey(horizon, itemId);
         levelColorChooser();
         generateItem();
         registerRec();
@@ -35,7 +41,7 @@ public abstract class LeveledItem {
         meta.setLore(lore);
         meta.addEnchant(Enchantment.LOYALTY, 1, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.setCustomModelData(itemId);
+        meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, itemId);
         item.setItemMeta(meta);
 
     }
