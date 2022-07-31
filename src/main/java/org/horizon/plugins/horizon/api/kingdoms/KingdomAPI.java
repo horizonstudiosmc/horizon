@@ -1,5 +1,7 @@
 package org.horizon.plugins.horizon.api.kingdoms;
 
+import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.horizon.plugins.horizon.Horizon;
 
@@ -29,6 +31,14 @@ public class KingdomAPI {
         properties = new Properties();
         kingdomMap = new HashMap<>();
         kingdomsSave = new File(instance.af.getAbsolutePath() + "/data.properties");
+        try {
+            if (!kingdomsSave.exists()) {
+                boolean t = kingdomsSave.createNewFile();
+                Bukkit.getLogger().info(String.valueOf(t));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addKingdom(Player ruler, Kingdom kingdom) {

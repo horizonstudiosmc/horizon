@@ -13,3 +13,4 @@ commands:
     description: Better tp, opens GUI. Use argument to tp to player, or use /tpa
   tpa:
     description: Teleport request.
+  test:

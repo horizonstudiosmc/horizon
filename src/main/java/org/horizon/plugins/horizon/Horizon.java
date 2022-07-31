@@ -5,10 +5,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.horizon.plugins.horizon.api.expansion.ExpansionAPI;
+import org.horizon.plugins.horizon.api.expansion.ExpansionManager;
 import org.horizon.plugins.horizon.api.gui.GUIListener;
 import org.horizon.plugins.horizon.api.gui.GUIManager;
 import org.horizon.plugins.horizon.api.kingdoms.KingdomAPI;
+import org.horizon.plugins.horizon.commands.kingdom.KingdomTestCMD;
 import org.horizon.plugins.horizon.commands.tp.NewTeleportCommand;
 import org.horizon.plugins.horizon.commands.tpa.TPACommand;
 import org.horizon.plugins.horizon.commands.tpa.TeleportationManager;
@@ -38,10 +39,10 @@ public final class Horizon extends JavaPlugin {
     public static GUIManager GUIManager;
 
     // Expansions
-    public ExpansionAPI expansionAPI;
+    public ExpansionManager expansionManager;
 
     // Kingdoms
-    KingdomAPI kingdomAPI;
+    public KingdomAPI kingdomAPI;
 
     public String prefix;
 
@@ -54,6 +55,7 @@ public final class Horizon extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
         configuration = getConfig();
+        af = getDataFolder();
 
         // Init
         GUIManager = new GUIManager();
@@ -68,6 +70,7 @@ public final class Horizon extends JavaPlugin {
         getCommand("horizon").setExecutor(new HorizonMainCommand(this));
         getCommand("tpa").setExecutor(new TPACommand());
         getCommand("tp").setExecutor(new NewTeleportCommand(this));
+        getCommand("test").setExecutor(new KingdomTestCMD(this));
 
         // Listeners
         getServer().getPluginManager().registerEvents(new GUIListener(), this);
@@ -86,7 +89,7 @@ public final class Horizon extends JavaPlugin {
 
 
         // Instantiate expansionManager
-        expansionAPI = new ExpansionAPI(this);
+        expansionManager = new ExpansionManager(this);
 
         // Save addons folder if It's not there.
         String configPath = getDataFolder().getAbsolutePath();
@@ -96,7 +99,7 @@ public final class Horizon extends JavaPlugin {
         if (!expansionFolder.exists()) expansionFolder.mkdir();
 
         // Start searching for expansions
-        expansionAPI.sfer();
+        expansionManager.sfer();
 
         // Save kingdoms if not exist
         if (!kingdomAPI.kingdomsSave.exists()) {

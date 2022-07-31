@@ -12,11 +12,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class ExpansionAPI {
+public class ExpansionManager {
 
     Horizon instance;
 
-    public ExpansionAPI(Horizon instance) {
+    public ExpansionManager(Horizon instance) {
         this.instance = instance;
     }
 
